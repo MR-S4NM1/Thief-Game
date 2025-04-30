@@ -52,7 +52,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaToMask: 0
-    - _Cutoff: 0
+    - _Cutoff: 1
     - _DstBlend: 10
     - _FresnelStrength: 4.96
     - _NoiseScale: 20

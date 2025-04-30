@@ -372,7 +372,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: fbb98b71fe812e8419a8cc06209559fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2142,6 +2142,7 @@ GameObject:
   - component: {fileID: 1092202837}
   - component: {fileID: 1092202836}
   - component: {fileID: 1092202835}
+  - component: {fileID: 1092202841}
   m_Layer: 0
   m_Name: vBasicController_Vefects_Vexa
   m_TagString: Player
@@ -2309,6 +2310,27 @@ Transform:
   - {fileID: 1832044703}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1092202841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092202834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a51d5b80c156de408654de077ab5178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skinnedMeshRenderer: {fileID: 1832044704}
+  _originalMaterials:
+  - {fileID: 2100000, guid: 244deb55d293e9040a8417c4445d8972, type: 2}
+  - {fileID: 2100000, guid: 48e1f07e8598c4846aa47d1a63bd331a, type: 2}
+  - {fileID: 2100000, guid: 56c50f84061290943af4a87f34d73bd6, type: 2}
+  - {fileID: 2100000, guid: e8d78a524d112c340a93e8a7a2007f68, type: 2}
+  _camouflageMaterial: {fileID: 2100000, guid: 69c248ef8e03e8a478e493d79657017b, type: 2}
+  _hologramMaterial: {fileID: 2100000, guid: 1227005b93c999443a70e19c939912fb, type: 2}
+  _gadgetsState: 0
 --- !u!1 &1118341114
 GameObject:
   m_ObjectHideFlags: 0
