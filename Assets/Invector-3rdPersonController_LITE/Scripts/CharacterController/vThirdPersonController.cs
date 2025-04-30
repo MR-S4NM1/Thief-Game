@@ -5,6 +5,8 @@ namespace Invector.vCharacterController
 {
     public class vThirdPersonController : vThirdPersonAnimator
     {
+        
+
         public virtual void ControlAnimatorRootMotion()
         {
             if (!this.enabled) return;
