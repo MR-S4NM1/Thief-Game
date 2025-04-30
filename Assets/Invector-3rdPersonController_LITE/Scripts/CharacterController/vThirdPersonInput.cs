@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Mr_Sanmi.ThiefGame;
+using UnityEngine;
 
 namespace Invector.vCharacterController
 {
@@ -153,7 +154,22 @@ namespace Invector.vCharacterController
         //Written by Miguel Elizalde
         protected void Shoot()
         {
-            if (Input.GetMouseButtonDown(0)) cc.Shoot();
+            if (Input.GetMouseButtonDown(0))
+            {
+                cc.Shoot();
+
+                Ray ray = new Ray(transform.position, transform.forward);
+                RaycastHit hit = new RaycastHit();
+
+                if(Physics.Raycast(ray, out hit, 20.0f))
+                {
+                    if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Disolve"))
+                    {
+                        print("AHHHHHHHHHHHHHHH ");
+                        GameManager.instance.CallDisolveCoroutine(hit.collider.gameObject);
+                    }
+                }
+            }
         }
 
         #endregion       

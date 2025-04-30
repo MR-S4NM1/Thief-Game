@@ -23,14 +23,14 @@ Material:
   m_Name: Disolve_Material
   m_Shader: {fileID: -6465566751694194690, guid: 9d8c1cedaac733c4f9b28607cd32250d, type: 3}
   m_Parent: {fileID: -876546973899608171, guid: 9d8c1cedaac733c4f9b28607cd32250d, type: 3}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _ALPHATEST_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: TransparentCutout
   disabledShaderPasses:
@@ -41,10 +41,10 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Cutoff: 3
+    - _Cutoff: 7
     - _GlowIntesity: 0.5
     - _NoiseScale: 50
-    - _NoiseStrength: 10
+    - _NoiseStrength: 30
     - _QueueControl: 0
     m_Colors:
     - _Color: {r: 0, g: 0.9333334, b: 1, a: 1}
