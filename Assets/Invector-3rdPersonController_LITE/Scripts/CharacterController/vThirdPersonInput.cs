@@ -39,7 +39,7 @@ namespace Invector.vCharacterController
         protected virtual void Update()
         {
             InputHandle();                  // update the input methods
-            cc.UpdateAnimator();            // updates the Animator Parameters
+            cc.UpdateAnimator();      // updates the Animator Parameters
         }
 
         public virtual void OnAnimatorMove()
@@ -74,11 +74,16 @@ namespace Invector.vCharacterController
 
         protected virtual void InputHandle()
         {
-            MoveInput();
-            CameraInput();
-            SprintInput();
-            StrafeInput();
-            JumpInput();
+            if (!cc.isShooting)
+            {
+                MoveInput();
+                CameraInput();
+                SprintInput();
+                StrafeInput();
+                JumpInput();
+            }
+
+            Shoot(); // Miguel
         }
 
         public virtual void MoveInput()
@@ -143,6 +148,12 @@ namespace Invector.vCharacterController
         {
             if (Input.GetKeyDown(jumpInput) && JumpConditions())
                 cc.Jump();
+        }
+
+        //Written by Miguel Elizalde
+        protected void Shoot()
+        {
+            if (Input.GetMouseButtonDown(0)) cc.Shoot();
         }
 
         #endregion       

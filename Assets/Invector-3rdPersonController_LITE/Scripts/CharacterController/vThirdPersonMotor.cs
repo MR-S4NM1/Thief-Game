@@ -80,6 +80,9 @@ namespace Invector.vCharacterController
                 _isStrafing = value;
             }
         }
+
+        internal bool isShooting { get; set; } //Miguel
+
         internal bool isGrounded { get; set; }
         internal bool isSprinting { get; set; }
         public bool stopMove { get; protected set; }
@@ -381,7 +384,7 @@ namespace Invector.vCharacterController
         [System.Serializable]
         public class vMovementSpeed
         {
-            [Range(1f, 20f)]
+            [Range(1f, 20f)] 
             public float movementSmooth = 6f;
             [Range(0f, 1f)]
             public float animationSmooth = 0.2f;

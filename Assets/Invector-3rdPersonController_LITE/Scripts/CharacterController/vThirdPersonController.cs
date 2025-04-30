@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Invector.vCharacterController
 {
@@ -56,25 +57,32 @@ namespace Invector.vCharacterController
 
         public virtual void UpdateMoveDirection(Transform referenceTransform = null)
         {
-            if (input.magnitude <= 0.01)
+            if (!isShooting)
             {
-                moveDirection = Vector3.Lerp(moveDirection, Vector3.zero, (isStrafing ? strafeSpeed.movementSmooth : freeSpeed.movementSmooth) * Time.deltaTime);
-                return;
-            }
+                if (input.magnitude <= 0.01)
+                {
+                    moveDirection = Vector3.Lerp(moveDirection, Vector3.zero, (isStrafing ? strafeSpeed.movementSmooth : freeSpeed.movementSmooth) * Time.deltaTime);
+                    return;
+                }
 
-            if (referenceTransform && !rotateByWorld)
-            {
-                //get the right-facing direction of the referenceTransform
-                var right = referenceTransform.right;
-                right.y = 0;
-                //get the forward direction relative to referenceTransform Right
-                var forward = Quaternion.AngleAxis(-90, Vector3.up) * right;
-                // determine the direction the player will face based on input and the referenceTransform's right and forward directions
-                moveDirection = (inputSmooth.x * right) + (inputSmooth.z * forward);
+                if (referenceTransform && !rotateByWorld)
+                {
+                    //get the right-facing direction of the referenceTransform
+                    var right = referenceTransform.right;
+                    right.y = 0;
+                    //get the forward direction relative to referenceTransform Right
+                    var forward = Quaternion.AngleAxis(-90, Vector3.up) * right;
+                    // determine the direction the player will face based on input and the referenceTransform's right and forward directions
+                    moveDirection = (inputSmooth.x * right) + (inputSmooth.z * forward);
+                }
+                else
+                {
+                    moveDirection = new Vector3(inputSmooth.x, 0, inputSmooth.z);
+                }
             }
-            else
+            else //Miguel
             {
-                moveDirection = new Vector3(inputSmooth.x, 0, inputSmooth.z);
+                moveDirection = Vector3.Lerp(moveDirection, Vector3.zero, 0.0f);
             }
         }
 
@@ -123,6 +131,28 @@ namespace Invector.vCharacterController
                 animator.CrossFadeInFixedTime("Jump", 0.1f);
             else
                 animator.CrossFadeInFixedTime("JumpMove", .2f);
+        }
+
+        public virtual void Shoot() // Miguel
+        {
+            if (!isShooting) StartCoroutine(ShootingRoutine());
+        }
+
+        // Miguel
+        protected IEnumerator ShootingRoutine() {
+            moveDirection = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+            _rigidbody.linearVelocity = Vector3.zero;
+            _rigidbody.constraints.HasFlag(RigidbodyConstraints.FreezePositionX);
+            _rigidbody.constraints.HasFlag(RigidbodyConstraints.FreezePositionY);
+            _rigidbody.constraints.HasFlag(RigidbodyConstraints.FreezePositionZ);
+            isShooting = true;
+            animator.Play("Shooting");
+            yield return new WaitForSeconds(1.0f);
+            _rigidbody.constraints.HasFlag(RigidbodyConstraints.FreezePositionX);
+            _rigidbody.constraints.HasFlag(RigidbodyConstraints.FreezePositionY);
+            _rigidbody.constraints.HasFlag(RigidbodyConstraints.FreezePositionZ);
+            isShooting = false;
         }
     }
 }
