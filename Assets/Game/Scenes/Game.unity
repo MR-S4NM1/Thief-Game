@@ -1734,6 +1734,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1397301769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &761137925
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1191184674}
+    m_Modifications:
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.37177593
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.37177593
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.37177593
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.046
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.74882716
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2838246
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.58228517
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.14016254
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -15.179
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -80.411
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 34.055
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018287897960650172, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+      propertyPath: m_Name
+      value: Sci Fi Pistol
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+--- !u!4 &761137926 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6324483284543288331, guid: 5ee2311ae1bcda243a4809a18e46850e, type: 3}
+  m_PrefabInstance: {fileID: 761137925}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &763851528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2803,6 +2877,7 @@ Transform:
   - {fileID: 823444556}
   - {fileID: 677737149}
   - {fileID: 828353795}
+  - {fileID: 761137926}
   m_Father: {fileID: 702192345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1219255896
