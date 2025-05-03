@@ -65,16 +65,16 @@ namespace TheDeveloperTrain.SciFiGuns
                 }
                 if (stats.fireMode == FireMode.Single)
                 {
-                    currentBulletCount--;
+                    //currentBulletCount--;
 
-                    Invoke(nameof(SpawnBullet), stats.shootDelay);
+                    //Invoke(nameof(SpawnBullet), stats.shootDelay);
                     StartCoroutine(nameof(ResetGunShotCooldown));
 
 
-                    if (currentBulletCount == 0)
-                    {
-                        Reload();
-                    }
+                    //if (currentBulletCount == 0)
+                    //{
+                    //    Reload();
+                    //}
                 }
                 else if (stats.fireMode == FireMode.Burst)
                 {

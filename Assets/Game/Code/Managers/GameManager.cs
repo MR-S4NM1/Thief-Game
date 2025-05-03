@@ -118,11 +118,14 @@ namespace Mr_Sanmi.ThiefGame
         {
             Debug.Log(p_object.name); 
 
-            p_object.GetComponent<Animator>().Play("DisolveWall");
+            p_object.GetComponent<Animator>()?.Play("DisolveWall");
 
             yield return new WaitForSeconds(2.0f);
 
-            p_object.GetComponent<BoxCollider>().enabled = false;
+            if (p_object.GetComponent<Animator>() != null)
+            {
+                p_object.GetComponent<BoxCollider>().enabled = false;
+            }
         }
 
         #endregion

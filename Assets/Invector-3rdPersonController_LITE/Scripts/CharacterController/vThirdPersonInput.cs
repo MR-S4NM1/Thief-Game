@@ -1,4 +1,6 @@
 ﻿using Mr_Sanmi.ThiefGame;
+using System.Collections;
+using TheDeveloperTrain.SciFiGuns;
 using UnityEngine;
 
 namespace Invector.vCharacterController
@@ -24,10 +26,18 @@ namespace Invector.vCharacterController
 
         #endregion
 
+
+        [SerializeField] protected Transform _shotOrigin;
+        [SerializeField] protected Transform _shotDirRef;
+        [SerializeField] protected GameObject _plasmaObj;
+        [SerializeField] protected Gun _gunCode;
+
         protected virtual void Start()
         {
             InitilizeController();
             InitializeTpCamera();
+
+            _plasmaObj.SetActive(false);
         }
 
         protected virtual void FixedUpdate()
@@ -82,9 +92,9 @@ namespace Invector.vCharacterController
                 SprintInput();
                 StrafeInput();
                 JumpInput();
-            }
 
-            Shoot(); // Miguel
+                ShootInput(); //Miguel Elizalde
+            }
         }
 
         public virtual void MoveInput()
@@ -152,26 +162,36 @@ namespace Invector.vCharacterController
         }
 
         //Written by Miguel Elizalde
-        protected void Shoot()
+        protected IEnumerator ShootRoutine()
         {
-            if (Input.GetMouseButtonDown(0))
+            yield return new WaitForSeconds(.35f);
+            Ray ray = new Ray(_shotOrigin.position, (_shotDirRef.position - _shotOrigin.position).normalized);
+            RaycastHit hit = new RaycastHit();
+
+            if (Physics.Raycast(ray, out hit, 20.0f))
             {
-                cc.Shoot();
-
-                Ray ray = new Ray(transform.position, transform.forward);
-                RaycastHit hit = new RaycastHit();
-
-                if(Physics.Raycast(ray, out hit, 20.0f))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Disolve"))
                 {
-                    if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Disolve"))
-                    {
-                        print("AHHHHHHHHHHHHHHH ");
-                        GameManager.instance.CallDisolveCoroutine(hit.collider.gameObject);
-                    }
+                    _plasmaObj.SetActive(true);
+                    print("AHHHHHHHHHHHHHHH ");
+                    GameManager.instance.CallDisolveCoroutine(hit.collider.gameObject);
+                    _gunCode.Shoot();
+
+                    yield return new WaitForSeconds(.3f);
+                    _plasmaObj.SetActive(false);
                 }
             }
         }
 
-        #endregion       
+        protected void ShootInput()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                cc.Shoot();
+                StartCoroutine(ShootRoutine());
+            }
+
+            #endregion
+        }
     }
 }
