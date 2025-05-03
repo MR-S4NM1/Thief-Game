@@ -42,8 +42,8 @@ Material:
     - _QueueControl: 0
     - _Transparency: 0.5
     - _WaveAmplitude: 0.1
-    - _WaveFrequency: 1.2
-    - _WaveSpeed: 2
+    - _WaveFrequency: 3.96
+    - _WaveSpeed: 2.62
     m_Colors:
     - _OceanColor: {r: 0.4575472, g: 0.9697423, b: 1, a: 0}
   m_BuildTextureStacks: []

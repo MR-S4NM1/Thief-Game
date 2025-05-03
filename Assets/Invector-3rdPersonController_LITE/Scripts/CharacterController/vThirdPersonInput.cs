@@ -170,16 +170,15 @@ namespace Invector.vCharacterController
 
             if (Physics.Raycast(ray, out hit, 20.0f))
             {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Disolve"))
-                {
-                    _plasmaObj.SetActive(true);
-                    print("AHHHHHHHHHHHHHHH ");
-                    GameManager.instance.CallDisolveCoroutine(hit.collider.gameObject);
-                    _gunCode.Shoot();
+                if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Disolve")) yield break;
 
-                    yield return new WaitForSeconds(.3f);
-                    _plasmaObj.SetActive(false);
-                }
+                _plasmaObj.SetActive(true);
+                print("AHHHHHHHHHHHHHHH ");
+                GameManager.instance.CallDisolveCoroutine(hit.collider.gameObject);
+                _gunCode.Shoot();
+
+                yield return new WaitForSeconds(.3f);
+                _plasmaObj.SetActive(false);
             }
         }
 
