@@ -33,6 +33,7 @@ namespace Mr_Sanmi.ThiefGame
         [SerializeField] protected Gadgets _gadgetsState;
         [SerializeField] protected List<GameObject> _collectibles;
         [SerializeField] protected bool _isInteractingWithACollectible;
+        [SerializeField] protected int _numberOfKeys;
         #endregion
 
         #region UnityMethods
@@ -47,13 +48,26 @@ namespace Mr_Sanmi.ThiefGame
 
         private void OnTriggerStay(Collider other)
         {
-            if (other.gameObject.layer != LayerMask.NameToLayer("Collectibles")) return;
-
-            if (Input.GetKeyDown(KeyCode.F))
+            if (other.gameObject.layer == LayerMask.NameToLayer("Collectibles"))
             {
-                _collectibles.Add(other.gameObject);
-                other.gameObject.SetActive(false);
-                Debug.Log($"Collectible: {other.gameObject.name}");
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    _collectibles.Add(other.gameObject);
+                    other.gameObject.SetActive(false);
+                    Debug.Log($"Collectible: {other.gameObject.name}");
+                    _numberOfKeys++;
+                }
+            }
+
+            if(_numberOfKeys > 0)
+            {
+                if (other.gameObject.layer == LayerMask.NameToLayer("Doors"))
+                {
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        other.GetComponent<DoorCode>().OpenDoor(_numberOfKeys);
+                    }
+                }
             }
         }
         #endregion

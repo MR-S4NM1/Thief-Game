@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mr_Sanmi.ThiefGame
@@ -15,6 +16,8 @@ namespace Mr_Sanmi.ThiefGame
     {
         #region References
         [SerializeField] public static GameManager instance;
+
+        [SerializeField] protected Material _openedDoorMaterial;
         #endregion
 
         #region RuntimeVariables
@@ -126,8 +129,7 @@ namespace Mr_Sanmi.ThiefGame
             {
                 p_object.GetComponent<BoxCollider>().enabled = false;
             }
-        }
-
+        } 
         #endregion
     }
 }
