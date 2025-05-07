@@ -92,7 +92,7 @@ namespace Mr_Sanmi.ThiefGame
             {
                 case Gadgets.ORIGINAL_MATERIALS:
                     _gadgetsState = Gadgets.ORIGINAL_MATERIALS;
-                    this.gameObject.layer = LayerMask.NameToLayer("Default");
+                    this.gameObject.layer = LayerMask.NameToLayer("Player");
                     ChangeToOriginalMaterials();
                     break;
                 case Gadgets.CAMOUFLAGE:
