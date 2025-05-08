@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] protected GameObject _gamePanel;
     [SerializeField] protected GameObject _pausePanel;
+
+    [SerializeField] protected GameObject _resumePanel;
     private void Awake()
     {
         if (instance == null) instance = this;

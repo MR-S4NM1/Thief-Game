@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Net.Sockets;
 using UnityEngine;
 
 namespace Mr_Sanmi.ThiefGame
-{
+{ 
     public enum Gadgets
     {
         NONE,
@@ -31,9 +30,7 @@ namespace Mr_Sanmi.ThiefGame
 
         #region RuntimeVariables
         [SerializeField] protected Gadgets _gadgetsState;
-        [SerializeField] protected List<GameObject> _collectibles;
-        [SerializeField] protected bool _isInteractingWithACollectible;
-        [SerializeField] protected int _numberOfKeys;
+        protected HashSet<GameObject> _collectibles;
         #endregion
 
         #region UnityMethods
@@ -52,20 +49,20 @@ namespace Mr_Sanmi.ThiefGame
             {
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    _collectibles.Add(other.gameObject);
                     other.gameObject.SetActive(false);
                     Debug.Log($"Collectible: {other.gameObject.name}");
-                    _numberOfKeys++;
+                    _collectibles.Add(other.gameObject);
+                    Debug.Log(_collectibles.Count);
                 }
             }
 
-            if(_numberOfKeys > 0)
+            if(_collectibles.Count > 0)
             {
                 if (other.gameObject.layer == LayerMask.NameToLayer("Doors"))
                 {
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                        other.GetComponent<DoorCode>().OpenDoor(_numberOfKeys);
+                        other.GetComponent<DoorCode>().OpenDoor(_collectibles.Count);
                     }
                 }
             }
@@ -84,6 +81,7 @@ namespace Mr_Sanmi.ThiefGame
         protected void InitializeGame()
         {
             _gadgetsState = Gadgets.ORIGINAL_MATERIALS;
+            _collectibles = new HashSet<GameObject>();
         }
         protected void ChangeState(Gadgets p_state){
             if (p_state == _gadgetsState) return;
@@ -173,10 +171,7 @@ namespace Mr_Sanmi.ThiefGame
         #endregion 
 
         #region GettersAndSetters
-        public int GetCollectiblesCount
-        {
-            get { return _collectibles.Count; }
-        }
+
         #endregion 
 
     }
