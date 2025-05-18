@@ -50,9 +50,9 @@ namespace Mr_Sanmi.ThiefGame
                     if (_currentRaycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Player") ||
                         _currentRaycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Hologram"))
                     {
-                        print("¡Ya te vi!");
+                        //print("¡Ya te vi!");
                         _avatarsTransform = null;
-                        //GameReferee.instance.ResetPlayersPosition();
+                        GameManager.instance.ResetGame();
                         yield break;
                     }
                     StartCoroutine(RayDetectorCoroutine());

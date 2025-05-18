@@ -53,6 +53,11 @@ namespace Mr_Sanmi.ThiefGame
             _disolveCoroutine = StartCoroutine(DisolveWallsCorroutine(p_object));
         }
 
+        public void ResetGame()
+        {
+            SceneChanger.instance.ChangeSceneTo(1);
+        }
+
         #endregion
 
         #region LocalMethods

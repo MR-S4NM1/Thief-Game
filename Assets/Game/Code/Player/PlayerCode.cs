@@ -51,8 +51,9 @@ namespace Mr_Sanmi.ThiefGame
                 {
                     other.gameObject.SetActive(false);
                     Debug.Log($"Collectible: {other.gameObject.name}");
-                    _collectibles.Add(other.gameObject);
-                    Debug.Log(_collectibles.Count);
+                    _collectibles.Add(other.gameObject); 
+                    UIManager.instance.UpdateCollectibles(_collectibles.Count);
+                    //Debug.Log(_collectibles.Count);
                 }
             }
 
