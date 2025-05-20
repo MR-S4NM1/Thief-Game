@@ -176,7 +176,7 @@ namespace Invector.vCharacterController
                 print("AHHHHHHHHHHHHHHH ");
                 GameManager.instance.CallDisolveCoroutine(hit.collider.gameObject);
                 _gunCode.Shoot();
-
+                AudioManager.instance.PlayAudio("Shoot");
                 yield return new WaitForSeconds(.3f);
                 _plasmaObj.SetActive(false);
             }

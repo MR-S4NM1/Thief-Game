@@ -61,6 +61,7 @@ namespace Mr_Sanmi.ThiefGame
                     Debug.Log($"Collectible: {other.gameObject.name}");
                     _collectibles.Add(other.gameObject); 
                     UIManager.instance.UpdateCollectibles(_collectibles.Count);
+                    AudioManager.instance.PlayAudio("PickUp");
                     //Debug.Log(_collectibles.Count);
                 }
             }
@@ -72,6 +73,7 @@ namespace Mr_Sanmi.ThiefGame
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         other.GetComponent<DoorCode>().OpenDoor(_collectibles.Count);
+                        AudioManager.instance.PlayAudio("Door");
                     }
                 }
             }
@@ -105,11 +107,13 @@ namespace Mr_Sanmi.ThiefGame
                 case Gadgets.CAMOUFLAGE:
                     _gadgetsState = Gadgets.CAMOUFLAGE;
                     this.gameObject.layer = LayerMask.NameToLayer("Camouflage");
+                    AudioManager.instance.PlayAudio("Camouflage");
                     ChangeMaterial(_camouflageMaterial);
                     break;
                 case Gadgets.HOLOGRAM:
                     _gadgetsState = Gadgets.HOLOGRAM;
-                    this.gameObject.layer = LayerMask.NameToLayer("Hologram");
+                    this.gameObject.layer = LayerMask.NameToLayer("Hologram"); 
+                    AudioManager.instance.PlayAudio("Hologram");
                     ChangeMaterial(_hologramMaterial);
                     break;
             }
