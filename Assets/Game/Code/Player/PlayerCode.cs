@@ -43,6 +43,14 @@ namespace Mr_Sanmi.ThiefGame
             InputHandle();
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Final"))
+            {
+                SceneChanger.instance.ChangeSceneTo(0);
+            }
+        }
+
         private void OnTriggerStay(Collider other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Collectibles"))

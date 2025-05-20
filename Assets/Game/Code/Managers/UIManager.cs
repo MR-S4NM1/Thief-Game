@@ -36,8 +36,14 @@ public class UIManager : MonoBehaviour
         {
             _pausePanel.SetActive(false);
         }
+    }
 
-         _numberOfCollectibles.text = $"0";
+    private void OnEnable()
+    {
+        if(_numberOfCollectibles != null)
+        {
+            _numberOfCollectibles.text = $"0";
+        }
     }
 
     public void ActivateOrDeactivateGamePanel(bool p_activationBool)
