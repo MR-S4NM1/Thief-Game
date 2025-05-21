@@ -39,7 +39,7 @@ namespace Mr_Sanmi.ThiefGame
             _doorHasBeenOpened = true;
             _animator.Play("OpenDoor");
             _securityPanelMeshRenderer.material = _securityPanelMaterialWhenActivated;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2.0f);
             _boxCollider.enabled = false;
         }
     }

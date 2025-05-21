@@ -128,7 +128,7 @@ namespace Mr_Sanmi.ThiefGame
 
             p_object.GetComponent<Animator>()?.Play("DisolveWall");
 
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
 
             if (p_object.GetComponent<Animator>() != null)
             {
