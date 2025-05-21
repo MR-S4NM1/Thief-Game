@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Final
+  - FinalRemind
   layers:
   - Default
   - TransparentFX
