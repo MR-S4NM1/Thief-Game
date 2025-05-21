@@ -5,15 +5,20 @@ namespace Mr_Sanmi.ThiefGame
 {
     public class CameraCode : MonoBehaviour
     {
+        #region References
         [SerializeField] protected Transform _avatarsTransform;
         [SerializeField] protected Transform _rayOrigin;
-        RaycastHit _currentRaycastHit;
+        #endregion
 
+        #region RuntimeVariables
+        protected RaycastHit _currentRaycastHit;
+        #endregion
+
+        #region UnityMethods
         private void Start()
         {
             _avatarsTransform = null;
         }
-
 
         private void OnTriggerEnter(Collider other)
         {
@@ -34,12 +39,14 @@ namespace Mr_Sanmi.ThiefGame
                 StopCoroutine(RayDetectorCoroutine());
             }
         }
+        #endregion
 
+        #region Coroutines
         protected IEnumerator RayDetectorCoroutine()
         {
             yield return new WaitForSeconds(0.1f);
 
-            if (_avatarsTransform != null)
+            if (_avatarsTransform != null) 
             {
                 if (Physics.Linecast(_rayOrigin.position, _avatarsTransform.position, out _currentRaycastHit))
                 {
@@ -50,9 +57,10 @@ namespace Mr_Sanmi.ThiefGame
                     if (_currentRaycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Player") ||
                         _currentRaycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Hologram"))
                     {
-                        //print("¡Ya te vi!");
+                        AudioManager.instance.PlayAudio("Alert");
+                        yield return new WaitForSeconds(1.0f);
                         _avatarsTransform = null;
-                        GameManager.instance.ResetGame();
+                        GameManager.instance.ChangeToGameOver();
                         yield break;
                     }
                     StartCoroutine(RayDetectorCoroutine());
@@ -63,5 +71,6 @@ namespace Mr_Sanmi.ThiefGame
                 yield break;
             }
         }
+        #endregion
     }
 }

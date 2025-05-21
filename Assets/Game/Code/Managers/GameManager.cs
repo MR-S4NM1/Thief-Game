@@ -17,7 +17,8 @@ namespace Mr_Sanmi.ThiefGame
         #region References
         [SerializeField] public static GameManager instance;
 
-        [SerializeField] protected Material _openedDoorMaterial;
+        [SerializeField] protected GameObject _finalCollission;
+
         #endregion
 
         #region RuntimeVariables
@@ -48,14 +49,31 @@ namespace Mr_Sanmi.ThiefGame
             }
         }
 
+        public void ChangeToWinState()
+        {
+            ChangeState(GeneralGameStates.VICTORY);
+        }
+
+        public void ChangeToGameOver()
+        {
+            ChangeState(GeneralGameStates.GAME_OVER);
+        }
+
         public void CallDisolveCoroutine(GameObject p_object)
         {
             _disolveCoroutine = StartCoroutine(DisolveWallsCorroutine(p_object));
         }
 
-        public void ResetGame()
+        public void ActivateOrDeactivateFinalCollision(bool p_hasCollectedTheDiamond)
         {
-            SceneChanger.instance.ChangeSceneTo(1);
+            if (p_hasCollectedTheDiamond)
+            {
+                _finalCollission.SetActive(false);
+            }
+            else
+            {
+                UIManager.instance.CallUIFunction("TurnFinalMessageTextOn");
+            }
         }
 
         #endregion
@@ -89,8 +107,7 @@ namespace Mr_Sanmi.ThiefGame
 
             Time.timeScale = 0.0f;
 
-            UIManager.instance.ActivateOrDeactivateGamePanel(false);
-            UIManager.instance.ActivateOrDeactivatePausePanel(true);
+            UIManager.instance.CallUIFunction("ActivatePausePanel");
         }
 
         protected void ResumeGame()
@@ -99,21 +116,19 @@ namespace Mr_Sanmi.ThiefGame
 
             Time.timeScale = 1.0f;
 
-            UIManager.instance.ActivateOrDeactivateGamePanel(true);
-            UIManager.instance.ActivateOrDeactivatePausePanel(false);
+            UIManager.instance.CallUIFunction("ActivateGamePanel");
         }
 
         protected void WinGame()
         {
             _state = GeneralGameStates.VICTORY;
-            UIManager.instance.ActivateOrDeactivateGamePanel(false);
-            UIManager.instance.ActivateOrDeactivatePausePanel(false);
+            SceneChanger.instance.ChangeSceneTo(2);
         }
 
         protected void LoseGame()
         {
             _state = GeneralGameStates.GAME_OVER;
-            //SceneChanger.instance.ChangeSceneTo(2);
+            SceneChanger.instance.ChangeSceneTo(3);
         }
 
         #endregion
@@ -134,7 +149,16 @@ namespace Mr_Sanmi.ThiefGame
             {
                 p_object.GetComponent<BoxCollider>().enabled = false;
             }
-        } 
+        }
+        #endregion
+
+        #region GetterAndSetters
+
+        public GeneralGameStates GetGameState()
+        {
+            return _state;
+        }
+
         #endregion
     }
 }

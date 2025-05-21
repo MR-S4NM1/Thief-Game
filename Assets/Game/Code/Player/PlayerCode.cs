@@ -26,11 +26,13 @@ namespace Mr_Sanmi.ThiefGame
         [SerializeField] protected KeyCode _pauseResumeGameInput = KeyCode.Escape;
         [SerializeField] protected KeyCode _hologramInput = KeyCode.H;
         [SerializeField] protected KeyCode _camouflageInput = KeyCode.C;
+        [SerializeField] protected KeyCode _pickUpInput = KeyCode.F;
         #endregion
 
         #region RuntimeVariables
         [SerializeField] protected Gadgets _gadgetsState;
         protected HashSet<GameObject> _collectibles;
+        protected bool _hasCollectedDiamond;
         #endregion
 
         #region UnityMethods
@@ -47,7 +49,14 @@ namespace Mr_Sanmi.ThiefGame
         {
             if (other.CompareTag("Final"))
             {
-                SceneChanger.instance.ChangeSceneTo(0);
+                GameManager.instance.ChangeToWinState();
+            }
+
+            if (other.CompareTag("FinalRemind"))
+            {
+                _hasCollectedDiamond = _collectibles.Count >= 6;
+
+                GameManager.instance.ActivateOrDeactivateFinalCollision(_hasCollectedDiamond);
             }
         }
 
@@ -55,22 +64,31 @@ namespace Mr_Sanmi.ThiefGame
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Collectibles"))
             {
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Input.GetKeyDown(_pickUpInput))
                 {
                     other.gameObject.SetActive(false);
-                    Debug.Log($"Collectible: {other.gameObject.name}");
                     _collectibles.Add(other.gameObject); 
                     UIManager.instance.UpdateCollectibles(_collectibles.Count);
                     AudioManager.instance.PlayAudio("PickUp");
-                    //Debug.Log(_collectibles.Count);
                 }
             }
 
-            if(_collectibles.Count > 0)
+            if (other.gameObject.layer == LayerMask.NameToLayer("StencilLayer1"))
+            {
+                if (Input.GetKeyDown(_pickUpInput))
+                {
+                    other.gameObject.SetActive(false);
+                    _collectibles.Add(other.gameObject);
+                    UIManager.instance.CallUIFunction("SetDiamond");
+                    AudioManager.instance.PlayAudio("PickUp");
+                }
+            }
+
+            if (_collectibles.Count > 0)
             {
                 if (other.gameObject.layer == LayerMask.NameToLayer("Doors"))
                 {
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (Input.GetKeyDown(_pickUpInput))
                     {
                         other.GetComponent<DoorCode>().OpenDoor(_collectibles.Count);
                         AudioManager.instance.PlayAudio("Door");
@@ -93,6 +111,7 @@ namespace Mr_Sanmi.ThiefGame
         {
             _gadgetsState = Gadgets.ORIGINAL_MATERIALS;
             _collectibles = new HashSet<GameObject>();
+            _hasCollectedDiamond = false;
         }
         protected void ChangeState(Gadgets p_state){
             if (p_state == _gadgetsState) return;

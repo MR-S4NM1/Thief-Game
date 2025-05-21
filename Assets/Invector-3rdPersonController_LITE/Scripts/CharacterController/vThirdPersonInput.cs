@@ -137,7 +137,7 @@ namespace Invector.vCharacterController
 
         protected virtual void SprintInput()
         {
-            if (Input.GetKeyDown(sprintInput))
+            if (Input.GetKeyDown(sprintInput) && (GameManager.instance.GetGameState() == GeneralGameStates.GAME))
                 cc.Sprint(true);
             else if (Input.GetKeyUp(sprintInput))
                 cc.Sprint(false);
@@ -157,7 +157,7 @@ namespace Invector.vCharacterController
         /// </summary>
         protected virtual void JumpInput()
         {
-            if (Input.GetKeyDown(jumpInput) && JumpConditions())
+            if (Input.GetKeyDown(jumpInput) && JumpConditions() && (GameManager.instance.GetGameState() == GeneralGameStates.GAME))
                 cc.Jump();
         }
 
@@ -184,7 +184,7 @@ namespace Invector.vCharacterController
 
         protected void ShootInput()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && (GameManager.instance.GetGameState() == GeneralGameStates.GAME))
             {
                 cc.Shoot();
                 StartCoroutine(ShootRoutine());

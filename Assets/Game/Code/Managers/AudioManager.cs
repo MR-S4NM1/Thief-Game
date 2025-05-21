@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] protected AudioClip _doorAudioClip;
     [SerializeField] protected AudioClip _pickUpAudioClip;
     [SerializeField] protected AudioClip _shotAudioClip;
+    [SerializeField] protected AudioClip _alertAudioClip;
     #endregion
 
     #region Knobs
@@ -25,6 +26,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] protected float _doorAudioVolumeScale;
     [SerializeField] protected float _pickUpAudioVolumeScale;
     [SerializeField] protected float _shotAudioVolumeScale;
+    [SerializeField] protected float _alertAudioVolumeScale;
 
     #endregion
 
@@ -71,6 +73,10 @@ public class AudioManager : MonoBehaviour
 
             case "Shoot":
                 _audioSource?.PlayOneShot(_shotAudioClip, _shotAudioVolumeScale);
+                break;
+
+            case "Alert":
+                _audioSource?.PlayOneShot(_alertAudioClip, _alertAudioVolumeScale);
                 break;
         }
     }

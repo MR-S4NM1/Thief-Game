@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 3076310598866628265, guid: 6d09f1047ed7fb244a255fa66291cb94, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: cd5f614425935b4419c371217192579a, type: 2}
+      objectReference: {fileID: 2100000, guid: c4543c2a720573045b200c3f34880a2d, type: 2}
     - target: {fileID: 3580850165668990844, guid: 6d09f1047ed7fb244a255fa66291cb94, type: 3}
       propertyPath: m_Name
       value: Stone4 Variant
