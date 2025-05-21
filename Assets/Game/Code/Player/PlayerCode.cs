@@ -14,6 +14,7 @@ namespace Mr_Sanmi.ThiefGame
     public class PlayerCode : MonoBehaviour
     {
         #region References
+
         [Header("Skinned Mesh Renderer")]
         [SerializeField] protected SkinnedMeshRenderer _skinnedMeshRenderer;
 
@@ -36,6 +37,7 @@ namespace Mr_Sanmi.ThiefGame
         #endregion
 
         #region UnityMethods
+
         private void Start()
         {
             InitializeGame();
@@ -64,7 +66,7 @@ namespace Mr_Sanmi.ThiefGame
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Collectibles"))
             {
-                if (Input.GetKeyDown(_pickUpInput))
+                if (Input.GetKey(_pickUpInput))
                 {
                     other.gameObject.SetActive(false);
                     _collectibles.Add(other.gameObject); 
@@ -75,7 +77,7 @@ namespace Mr_Sanmi.ThiefGame
 
             if (other.gameObject.layer == LayerMask.NameToLayer("StencilLayer1"))
             {
-                if (Input.GetKeyDown(_pickUpInput))
+                if (Input.GetKey(_pickUpInput))
                 {
                     other.gameObject.SetActive(false);
                     _collectibles.Add(other.gameObject);
@@ -88,7 +90,7 @@ namespace Mr_Sanmi.ThiefGame
             {
                 if (other.gameObject.layer == LayerMask.NameToLayer("Doors"))
                 {
-                    if (Input.GetKeyDown(_pickUpInput))
+                    if (Input.GetKey(_pickUpInput))
                     {
                         other.GetComponent<DoorCode>().OpenDoor(_collectibles.Count);
                         AudioManager.instance.PlayAudio("Door");

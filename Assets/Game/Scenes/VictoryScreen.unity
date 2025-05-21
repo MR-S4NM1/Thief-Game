@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1685391170}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CallUIFunction
         m_Mode: 5
@@ -967,7 +967,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1685391170}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CallUIFunction
         m_Mode: 5
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1685391170}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CallUIFunction
         m_Mode: 5

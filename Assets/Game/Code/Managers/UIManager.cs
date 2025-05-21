@@ -191,6 +191,12 @@ public class UIManager : MonoBehaviour
     protected void SetDiamond()
     {
         _diamondImage.SetActive(true);
+        _reminderAboutTheDiamond.gameObject.SetActive(false);
+    }
+
+    protected void TurnFinalMessageTextOff()
+    {
+        _reminderAboutTheDiamond.gameObject.SetActive(false);
     }
 
     protected void TurnFinalMessageTextOn()

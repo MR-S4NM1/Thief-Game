@@ -20,7 +20,7 @@ namespace Mr_Sanmi.ThiefGame
         [SerializeField] protected GameObject _finalCollission;
 
         #endregion
-
+         
         #region RuntimeVariables
         [SerializeField] protected GeneralGameStates _state;
         [SerializeField] protected Coroutine _disolveCoroutine;
@@ -32,6 +32,7 @@ namespace Mr_Sanmi.ThiefGame
             if (instance == null) instance = this;
             _state = GeneralGameStates.GAME;
         }
+
         #endregion
 
         #region Public Methods
