@@ -29,8 +29,9 @@ namespace Mr_Sanmi.ThiefGame
         {
             if (_doorHasBeenOpened) return;
 
-            if (p_numberOfKeys != _doorID) return;
+            if (p_numberOfKeys < _doorID) return; 
 
+            AudioManager.instance.PlayAudio("Door");
             _coroutine = StartCoroutine(OpenDoorCoroutine());
         }
 

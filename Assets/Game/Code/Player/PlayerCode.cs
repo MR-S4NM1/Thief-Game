@@ -93,7 +93,6 @@ namespace Mr_Sanmi.ThiefGame
                     if (Input.GetKey(_pickUpInput))
                     {
                         other.GetComponent<DoorCode>().OpenDoor(_collectibles.Count);
-                        AudioManager.instance.PlayAudio("Door");
                     }
                 }
             }
